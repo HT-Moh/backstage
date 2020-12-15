@@ -1,5 +1,14 @@
 # @backstage/plugin-scaffolder-backend
 
+## 0.3.5
+
+### Patch Changes
+
+- 94c65a9d4: Added configuration schema for the commonly used properties
+- Updated dependencies [c911061b7]
+- Updated dependencies [0e6298f7e]
+  - @backstage/catalog-model@0.5.1
+
 ## 0.3.4
 
 ### Patch Changes
