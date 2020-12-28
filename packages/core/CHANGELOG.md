@@ -1,5 +1,23 @@
 # @backstage/core
 
+## 0.4.2
+
+### Patch Changes
+
+- 1dc445e89: Update to use new plugin extension API
+- 342270e4d: Create AboutCard in core and use it in pagerduty and catalog plugin
+- Updated dependencies [d681db2b5]
+- Updated dependencies [1dc445e89]
+  - @backstage/core-api@0.2.7
+
+## 0.4.1
+
+### Patch Changes
+
+- 8ef71ed32: Add a `<Avatar>` component to `@backstage/core`.
+- Updated dependencies [7dd2ef7d1]
+  - @backstage/core-api@0.2.6
+
 ## 0.4.0
 
 ### Minor Changes

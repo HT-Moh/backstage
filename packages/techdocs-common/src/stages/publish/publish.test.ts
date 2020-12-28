@@ -23,68 +23,62 @@ import { LocalPublish } from './local';
 import { GoogleGCSPublish } from './googleStorage';
 
 const logger = getVoidLogger();
-const testDiscovery: jest.Mocked<PluginEndpointDiscovery> = {
+const discovery: jest.Mocked<PluginEndpointDiscovery> = {
   getBaseUrl: jest.fn().mockResolvedValueOnce('http://localhost:7000'),
   getExternalBaseUrl: jest.fn(),
 };
 
 describe('Publisher', () => {
-  it('should create local publisher by default', () => {
-    const mockConfig = ConfigReader.fromConfigs([
-      {
-        context: '',
-        data: {
-          techdocs: {
-            requestUrl: 'http://localhost:7000',
-          },
-        },
+  it('should create local publisher by default', async () => {
+    const mockConfig = new ConfigReader({
+      techdocs: {
+        requestUrl: 'http://localhost:7000',
       },
-    ]);
+    });
 
-    const publisher = Publisher.fromConfig(mockConfig, logger, testDiscovery);
+    const publisher = await Publisher.fromConfig(mockConfig, {
+      logger,
+      discovery,
+    });
     expect(publisher).toBeInstanceOf(LocalPublish);
   });
 
-  it('should create local publisher from config', () => {
-    const mockConfig = ConfigReader.fromConfigs([
-      {
-        context: '',
-        data: {
-          techdocs: {
-            requestUrl: 'http://localhost:7000',
-            publisher: {
-              type: 'local',
-            },
-          },
+  it('should create local publisher from config', async () => {
+    const mockConfig = new ConfigReader({
+      techdocs: {
+        requestUrl: 'http://localhost:7000',
+        publisher: {
+          type: 'local',
         },
       },
-    ]);
+    });
 
-    const publisher = Publisher.fromConfig(mockConfig, logger, testDiscovery);
+    const publisher = await Publisher.fromConfig(mockConfig, {
+      logger,
+      discovery,
+    });
     expect(publisher).toBeInstanceOf(LocalPublish);
   });
 
-  it('should create google gcs publisher from config', () => {
-    const mockConfig = ConfigReader.fromConfigs([
-      {
-        context: '',
-        data: {
-          techdocs: {
-            requestUrl: 'http://localhost:7000',
-            publisher: {
-              type: 'googleGcs',
-              googleGcs: {
-                credentials: '{}',
-                projectId: 'gcp-project-id',
-                bucketName: 'bucketName',
-              },
-            },
+  it('should create google gcs publisher from config', async () => {
+    const mockConfig = new ConfigReader({
+      techdocs: {
+        requestUrl: 'http://localhost:7000',
+        publisher: {
+          type: 'googleGcs',
+          googleGcs: {
+            credentials: '{}',
+            projectId: 'gcp-project-id',
+            bucketName: 'bucketName',
           },
         },
       },
-    ]);
+    });
 
-    const publisher = Publisher.fromConfig(mockConfig, logger, testDiscovery);
+    const publisher = await Publisher.fromConfig(mockConfig, {
+      logger,
+      discovery,
+    });
     expect(publisher).toBeInstanceOf(GoogleGCSPublish);
   });
 });

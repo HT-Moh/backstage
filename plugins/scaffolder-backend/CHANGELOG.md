@@ -1,5 +1,26 @@
 # @backstage/plugin-scaffolder-backend
 
+## 0.3.6
+
+### Patch Changes
+
+- 19554f6d6: Added Github Actions for Create React App, and allow better imports of files inside a module when they're exposed using `files` in `package.json`
+- 33a82a713: GitLab preparer uses the right token (primarily the same one as the publisher, falling back to the integrations token)
+- aed8f7f12: Clearer error message when preparer or publisher type can't be determined.
+
+## 0.3.5
+
+### Patch Changes
+
+- 94c65a9d4: Added configuration schema for the commonly used properties
+- Updated dependencies [c911061b7]
+- Updated dependencies [1d1c2860f]
+- Updated dependencies [0e6298f7e]
+- Updated dependencies [4eafdec4a]
+- Updated dependencies [ac3560b42]
+  - @backstage/catalog-model@0.6.0
+  - @backstage/backend-common@0.4.1
+
 ## 0.3.4
 
 ### Patch Changes
